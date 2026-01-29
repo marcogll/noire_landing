@@ -1,30 +1,12 @@
-# Etapa de construcción
-FROM node:18-alpine AS builder
-
-# Establecer el directorio de trabajo
-WORKDIR /app
-
-# Copiar archivos de configuración de package
-COPY package*.json ./
-
-# Instalar dependencias
-RUN npm ci --only=production
-
-# Copiar archivos del proyecto
-COPY . .
-
-# Construir CSS de Tailwind si es necesario
-RUN npm run build || true
-
-# Etapa de producción
+# Etapa de producción - aplicación estática
 FROM nginx:alpine
 
 # Instalar el usuario appuser y establecer permisos
 RUN addgroup -g 1001 -S appgroup && \
     adduser -S appuser -u 1001 -G appgroup
 
-# Copiar archivos de construcción estáticos
-COPY --from=builder /app /usr/share/nginx/html
+# Copiar archivos estáticos directamente
+COPY . /usr/share/nginx/html
 
 # Copiar configuración personalizada de nginx
 COPY nginx.conf /etc/nginx/nginx.conf
