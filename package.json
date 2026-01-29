@@ -1,0 +1,15 @@
+{
+  "name": "noire-landing",
+  "version": "1.0.0",
+  "description": "Noiré Collective Landing Page",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind-build.css --watch",
+    "build:prod": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind-build.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.0"
+  },
+  "keywords": ["landing", "marketing", "web"],
+  "author": "Noiré Collective"
+}
