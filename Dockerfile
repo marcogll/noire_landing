@@ -22,8 +22,8 @@ RUN chown -R appuser:appgroup /usr/share/nginx/html && \
 # Cambiar al usuario appuser
 USER appuser
 
-# Exponer puerto 8080 en lugar de 80 para evitar conflictos
-EXPOSE 8080
+# Exponer puerto 3000 (requerido por Coolify)
+EXPOSE 3000
 
 # Iniciar nginx
 CMD ["nginx", "-g", "daemon off;"]
